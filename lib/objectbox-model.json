@@ -1,0 +1,135 @@
+{
+  "_note1": "KEEP THIS FILE! Check it into a version control system (VCS) like git.",
+  "_note2": "ObjectBox manages crucial IDs for your object model. See docs for details.",
+  "_note3": "If you have VCS merge conflicts, you must resolve them according to ObjectBox docs.",
+  "entities": [
+    {
+      "id": "1:9179977977354614928",
+      "lastPropertyId": "8:7349193323454389628",
+      "name": "Booking",
+      "properties": [
+        {
+          "id": "1:8357144011607279320",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:8458344830971261292",
+          "name": "customerName",
+          "type": 9
+        },
+        {
+          "id": "3:7962767843937331718",
+          "name": "email",
+          "type": 9
+        },
+        {
+          "id": "4:3822356327941314575",
+          "name": "mobileNumber",
+          "type": 9
+        },
+        {
+          "id": "5:860510758666373946",
+          "name": "address",
+          "type": 9
+        },
+        {
+          "id": "6:8822244724883855249",
+          "name": "pincode",
+          "type": 9
+        },
+        {
+          "id": "7:3650868813667324470",
+          "name": "type",
+          "type": 9
+        },
+        {
+          "id": "8:7349193323454389628",
+          "name": "amount",
+          "type": 8
+        }
+      ],
+      "relations": []
+    },
+    {
+      "id": "2:8413758253743813104",
+      "lastPropertyId": "5:6440728090609097041",
+      "name": "Deposition",
+      "properties": [
+        {
+          "id": "1:1253836200792288439",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:7728761791378670390",
+          "name": "amount",
+          "type": 8
+        },
+        {
+          "id": "3:8121406318002561094",
+          "name": "date",
+          "type": 10
+        },
+        {
+          "id": "4:1834175990793675638",
+          "name": "raisedBy",
+          "type": 9
+        },
+        {
+          "id": "5:6440728090609097041",
+          "name": "assignedTo",
+          "type": 9
+        }
+      ],
+      "relations": []
+    },
+    {
+      "id": "3:6362456158158863905",
+      "lastPropertyId": "5:3537299845801548331",
+      "name": "User",
+      "properties": [
+        {
+          "id": "1:5006572974907211500",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:747061695773067018",
+          "name": "name",
+          "type": 9
+        },
+        {
+          "id": "3:7890717786941939849",
+          "name": "username",
+          "type": 9
+        },
+        {
+          "id": "4:8278147917276464597",
+          "name": "mobile",
+          "type": 9
+        },
+        {
+          "id": "5:3537299845801548331",
+          "name": "type",
+          "type": 9
+        }
+      ],
+      "relations": []
+    }
+  ],
+  "lastEntityId": "3:6362456158158863905",
+  "lastIndexId": "0:0",
+  "lastRelationId": "0:0",
+  "lastSequenceId": "0:0",
+  "modelVersion": 5,
+  "modelVersionParserMinimum": 5,
+  "retiredEntityUids": [],
+  "retiredIndexUids": [],
+  "retiredPropertyUids": [],
+  "retiredRelationUids": [],
+  "version": 1
+}
