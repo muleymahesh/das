@@ -21,7 +21,8 @@ class ProfileError extends ProfileState {
   ProfileError(this.error);
 }
 // Add new event for calculating commission
-class CalculateCommission extends ProfileEvent {}
+class GetUserData extends ProfileEvent {
+}
 
 // Add new state for commission
 class CommissionCalculated extends ProfileState {

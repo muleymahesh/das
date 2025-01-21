@@ -1,11 +1,12 @@
 import 'package:das_app/ui/profile/bloc/ProfileBloc.dart';
 import 'package:das_app/ui/profile/bloc/ProfileState.dart';
-import 'package:das_app/ui/stock/MyStockScreen.dart';
+import 'package:das_app/ui/product/MyStockScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../bookings/MyBookingsScreen.dart';
 import '../collection/MyCollectionScreen.dart';
+import '../reports/MyReportScreen.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({Key? key}) : super(key: key);
@@ -13,7 +14,7 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-        create: (context) => ProfileBloc()..add(CalculateCommission()), // Add LoadBookings event
+        create: (context) => ProfileBloc()..add(GetUserData()), // Add LoadBookings event
         child: BlocBuilder<ProfileBloc, ProfileState>(
         builder: (context, state)
     {
@@ -24,20 +25,25 @@ class ProfileScreen extends StatelessWidget {
           padding: const EdgeInsets.all(16.0),
           child: Column(
             children: [
+              // Text('Hello ${state.}',
+              //   style: TextStyle(
+              //     fontSize: 21.0,
+              //     fontWeight: FontWeight.bold,
+              //   ),),
               Row(
                 children: [
                   Expanded(
                     child: Card(
                       child: Padding(
-                        padding: EdgeInsets.all(30.0),
+                        padding: const EdgeInsets.all(30.0),
                         child: Column(
                           children: [
-                        Text('₹ ${state.commission.toStringAsFixed(2)}', style: TextStyle(
+                        Text('₹ ${state.commission.toStringAsFixed(2)}', style: const TextStyle(
                               fontSize: 21.0,
                               fontWeight: FontWeight.bold,
                             ),),
-                            SizedBox(height: 10),
-                            Text('My Commission'), // Replace with your number
+                            const SizedBox(height: 10),
+                            const Text('My Commission'), // Replace with your number
                           ],
                         ),
                       ),
@@ -45,19 +51,28 @@ class ProfileScreen extends StatelessWidget {
                   ),
                  const SizedBox(width: 16.0), // Add spacing between cards
                   Expanded(
-                    child: Card(
-                      child: Padding(
-                        padding: EdgeInsets.all(30.0),
-                        child: Column(
-                          children: [
-                           Text('${state.bookingCount}',
-                             style: TextStyle(
-                              fontSize: 21.0,
-                              fontWeight: FontWeight.bold,
-                            ),),
-                            Text('My Bookings'), // Replace with your number
-                          ],
+                    child: GestureDetector(
+                      onTap: (){
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => const MyReportScreen()),
+                        );
+                      },
+                      child: const Card(
+                        child: Padding(
+                          padding: EdgeInsets.all(30.0),
+                          child: Column(
+                            children: [
+                             Text('My Reports',
+                               style: TextStyle(
+                                fontSize: 21.0,
+                                fontWeight: FontWeight.bold,
+                              ),),
+                              Text(''), // Replace with your number
+                            ],
+                          ),
                         ),
+
                       ),
                     ),
                   ),
@@ -97,7 +112,7 @@ class ProfileScreen extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => MyCollectionScreen(collection: state.collection,),
+                              builder: (context) => const MyCollectionScreen(),
                             ),
                           );
                         }

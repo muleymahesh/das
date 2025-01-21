@@ -12,7 +12,7 @@ class ProductsScreen extends StatelessWidget {
   final String productType;
   Booking? booking;
 
-  ProductsScreen({Key? key, required this.productType,booking}) : super(key: key);
+  ProductsScreen({Key? key, required this.productType,this.booking}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -41,12 +41,19 @@ class ProductsScreen extends StatelessWidget {
                   final product = state.products[index];
                   return GestureDetector(
                     onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => CustomerDetailsScreen(productType: productType,product: state.products[index],booking: booking,), // Pass productType
-                        ),
-                      );
+                      if(int.parse(product.quantity ??"0")>0) {
+                        Navigator.pop(context);
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                CustomerDetailsScreen(productType: productType,
+                                  product: state.products[index],
+                                  booking: booking,), // Pass productType
+                          ),
+                        );
+                      }
+
                     },
                     child: Card(
                       child: Padding(
@@ -56,7 +63,7 @@ class ProductsScreen extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Text(
-                              product.name,
+                              productType.startsWith("fresh") ? "${product.sKU ??""}+PL" : product.sKU??"",
                               style: const TextStyle(
                                 fontSize: 25.0,
                                 fontWeight: FontWeight.bold,
@@ -65,14 +72,14 @@ class ProductsScreen extends StatelessWidget {
                             ),
                             const SizedBox(height: 28.0),
                             Text(
-                              'Price: ₹ ${product.price.toStringAsFixed(2)}',
+                              'Price: ₹ ${product.price}',//productType.startsWith("fresh") ? (product.price+500).toStringAsFixed(2) : product.price.toStringAsFixed(2)}',
                               style: const TextStyle(
                                 fontSize: 18.0,
                               ),
                               textAlign: TextAlign.center,
                             ),
                             Text(
-                              'Stock: ${product.stock}',
+                              'Stock: ${product.quantity}',
                               style: const TextStyle(
                                 fontSize: 18.0,
                               ),

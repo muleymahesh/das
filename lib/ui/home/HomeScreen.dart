@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import '../product/ProductsScreen.dart';
 
 class HomeScreen extends StatelessWidget {
-  HomeScreen({Key? key}) : super(key: key);
+  HomeScreen({super.key});
 
-  ButtonStyle _buttonStyle = ElevatedButton.styleFrom(
+  final ButtonStyle _buttonStyle = ElevatedButton.styleFrom(
     backgroundColor: const Color(0xFFFDD120),
     foregroundColor: Colors.white,
     padding: const EdgeInsets.symmetric(vertical: 16.0),

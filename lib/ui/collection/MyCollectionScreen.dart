@@ -8,8 +8,7 @@ import 'bloc/DepositionBloc.dart';
 import 'bloc/DepositionState.dart';
 
 class MyCollectionScreen extends StatelessWidget {
-  double collection;
-  MyCollectionScreen({Key? key, required this.collection}) : super(key: key);
+  const MyCollectionScreen({Key? key,}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +31,7 @@ class MyCollectionScreen extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.all(16.0),
                     child: Text(
-                      'Total Collection: ₹ ${collection.toStringAsFixed(2)}',
+                      'Total Collection: ₹ ${state.collection.toStringAsFixed(2)}',
                       style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                     ),
                   ),
@@ -47,13 +46,12 @@ class MyCollectionScreen extends StatelessWidget {
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: ListTile(
-                                title: Text('raised request for ₹ ${deposition.amount.toStringAsFixed(2)}'),
+                                title: Text('raised request for ₹ ${(double.parse(deposition.amount ?? "0.0")).toStringAsFixed(2)}'),
                                 subtitle: Text(
-                                  'Date: ${DateFormat('dd/MM/yyyy').format(deposition.date)}'
-                                      '  Assigned To: ${deposition.assignedTo}'
-                                      '\nstatus: pending',
+                                    'Date: ${DateFormat('dd/MM/yyyy').format(DateTime.parse(deposition.date ?? ""))}'
+                                      '  Assigned To: ${deposition.pendingWith ?? ""}'
+                                      '\nstatus: ${deposition.status ?? ""}'),
                                 ),
-                              ),
                             ),
                             Container(
                               height: 1.0,
@@ -78,26 +76,34 @@ class MyCollectionScreen extends StatelessWidget {
                           textStyle: const TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold), // Set font size here
                         ),
                         onPressed: () async {
-                          // Show dialog instead of navigating to CreateDepositionScreen
-                          Deposition d = Deposition(amount: 10000.00, date: DateTime.now(), raisedBy: "mahesh", assignedTo: "Amol");
-                          BlocProvider.of<DepositionBloc>(context).add(SubmitDepositions(d));
-                          showDialog(
-                            context: context,
-                            builder: (context) {
-                              return AlertDialog(
-                                title: const Text('Deposition Created'),
-                                content: const Text('Deposition created successfully!'),
-                                actions: [
-                                  TextButton(
-                                    onPressed: () {
-                                      Navigator.of(context).pop(); // Close the dialog
-                                    },
-                                    child: const Text('OK'),
-                                  ),
-                                ],
-                              );
-                            },
-                          );
+                          if(state.collection>0) {
+                            // Show dialog instead of navigating to CreateDepositionScreen
+                            Deposition d = Deposition(amount: state.collection,
+                                date: DateTime.now(),
+                                raisedBy: "mahesh",
+                                assignedTo: "Amol");
+                            BlocProvider.of<DepositionBloc>(context).add(
+                                SubmitDepositions(d));
+                            showDialog(
+                              context: context,
+                              builder: (context) {
+                                return AlertDialog(
+                                  title: const Text('Deposition Created'),
+                                  content: const Text(
+                                      'Deposition created successfully!'),
+                                  actions: [
+                                    TextButton(
+                                      onPressed: () {
+                                        Navigator.of(context)
+                                            .pop(); // Close the dialog
+                                      },
+                                      child: const Text('OK'),
+                                    ),
+                                  ],
+                                );
+                              },
+                            );
+                          }
                         },
                         child: Text("Deposit now"),
                       )

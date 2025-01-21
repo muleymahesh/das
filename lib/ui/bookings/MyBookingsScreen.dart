@@ -1,3 +1,4 @@
+import 'package:das_app/data/model/Booking.dart';
 import 'package:das_app/ui/product/ProductsScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -24,39 +25,51 @@ class MyBookingsScreen extends StatelessWidget {
             if (state is BookingsLoading) {
               return const Center(child: CircularProgressIndicator());
             } else if (state is BookingsLoaded) {
-              return ListView.builder(
-                itemCount: state.bookings.length,
-                itemBuilder: (context, index) {
-                  final booking = state.bookings[index];
-                  return Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Column(
-                      children: [
-                        ListTile(
-                          title: Text(booking.customerName),
-                          onTap: (){
-                            if(from.startsWith("booking")){
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => ProductsScreen(productType: from,booking: booking,), // Pass productType
-                                ),
-                              );
-                            }
-                          },
-                          subtitle: Text('${booking.email}, ${booking.mobileNumber}, ${booking.address}'),
-                          trailing: IconButton(
-                            icon: const Icon(Icons.call),
-                            onPressed: () {
-                              _makePhoneCall(booking.mobileNumber);
-                            },
+              return Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: ListView.builder(
+
+                  itemCount: state.bookings.length,
+                  itemBuilder: (context, index) {
+                    final booking = state.bookings[index];
+                    return Card(
+                      color: Colors.white,
+                          elevation: 4.0,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10.0),
                           ),
-                        ),
-                        const Divider(height: 1,)
-                      ],
-                    ),
-                  );
-                },
+                      child: Column(
+                        spacing: 1,
+                        children: [
+                          ListTile(
+                            title: Text(booking.name ?? "", style: const TextStyle(fontWeight: FontWeight.bold),),
+                            onTap: (){
+                              if(from.startsWith("booking")){
+                                Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => ProductsScreen(productType: from,
+                                      booking: Booking(id: 0,
+                                          name: booking.name ?? "", email: booking.email ?? "", mobileNumber: booking.mobile ?? "", address: booking.address ?? "", pincode: booking.pincode ?? "", type: "booking", amount: 0, pId: 0, userId: 0),), // Pass productType
+                                  ),
+                                );
+
+                                    }
+                            },
+                            subtitle: Text('${booking.email}, ${booking.mobile},\n ${booking.address}'),
+                            trailing: IconButton(
+                              icon: const Icon(Icons.call),
+                              onPressed: () {
+                                _makePhoneCall(booking.mobile ?? "");
+                              },
+                            ),
+                          ),
+                          const Divider(height: 1,)
+                        ],
+                      ),
+                    );
+                  },
+                ),
               );
             } else if (state is BookingError) {
               return Center(child: Text(state.error));

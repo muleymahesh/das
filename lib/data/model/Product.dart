@@ -1,15 +1,16 @@
-// import 'package:realm/realm.dart';
-import 'dart:io';
-// part 'Product.g.dart';
+import 'package:objectbox/objectbox.dart';
 
-// @RealmModel()
+@Entity()
 class Product {
-  // @PrimaryKey()
+  @Id( assignable: true)
   late int id;
   late String name;
+  late String sku;
   late double price;
-  late int stock;
+  late int quantity;
+  late int catId;
+  late int commission;
   late String type;
 
-  Product(this.id, this.name, this.price, this.stock, this.type); // Add type for freshsold, etc.
+  Product(this.id, this.name, this.price, this.quantity, this.commission, this.type); // Add type for freshsold, etc.
 }

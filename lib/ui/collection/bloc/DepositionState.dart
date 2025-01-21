@@ -1,4 +1,6 @@
 // Events
+import 'package:das_app/data/model/deposition_response.dart';
+
 import '../../../data/model/Deposition.dart';
 
 abstract class DepositionEvent {}
@@ -15,9 +17,10 @@ abstract class DepositionState {}
 class DepositionsLoading extends DepositionState {}
 
 class DepositionsLoaded extends DepositionState {
-  final List<Deposition> depositions;
+  final List<Requests> depositions;
+  final double collection;
 
-  DepositionsLoaded(this.depositions);
+  DepositionsLoaded(this.depositions,  this.collection);
 }
 
 class DepositionError extends DepositionState {

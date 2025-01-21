@@ -4,55 +4,6 @@
   "_note3": "If you have VCS merge conflicts, you must resolve them according to ObjectBox docs.",
   "entities": [
     {
-      "id": "1:9179977977354614928",
-      "lastPropertyId": "8:7349193323454389628",
-      "name": "Booking",
-      "properties": [
-        {
-          "id": "1:8357144011607279320",
-          "name": "id",
-          "type": 6,
-          "flags": 1
-        },
-        {
-          "id": "2:8458344830971261292",
-          "name": "customerName",
-          "type": 9
-        },
-        {
-          "id": "3:7962767843937331718",
-          "name": "email",
-          "type": 9
-        },
-        {
-          "id": "4:3822356327941314575",
-          "name": "mobileNumber",
-          "type": 9
-        },
-        {
-          "id": "5:860510758666373946",
-          "name": "address",
-          "type": 9
-        },
-        {
-          "id": "6:8822244724883855249",
-          "name": "pincode",
-          "type": 9
-        },
-        {
-          "id": "7:3650868813667324470",
-          "name": "type",
-          "type": 9
-        },
-        {
-          "id": "8:7349193323454389628",
-          "name": "amount",
-          "type": 8
-        }
-      ],
-      "relations": []
-    },
-    {
       "id": "2:8413758253743813104",
       "lastPropertyId": "5:6440728090609097041",
       "name": "Deposition",
@@ -88,7 +39,7 @@
     },
     {
       "id": "3:6362456158158863905",
-      "lastPropertyId": "5:3537299845801548331",
+      "lastPropertyId": "8:7362898338941951709",
       "name": "User",
       "properties": [
         {
@@ -116,20 +67,98 @@
           "id": "5:3537299845801548331",
           "name": "type",
           "type": 9
+        },
+        {
+          "id": "6:6179994006168579494",
+          "name": "commission",
+          "type": 8
+        },
+        {
+          "id": "7:3469698218087509717",
+          "name": "collection",
+          "type": 8
+        },
+        {
+          "id": "8:7362898338941951709",
+          "name": "supervisor_id",
+          "type": 6
+        }
+      ],
+      "relations": []
+    },
+    {
+      "id": "4:2293708630956089105",
+      "lastPropertyId": "9:7000032065444812316",
+      "name": "Product",
+      "properties": [
+        {
+          "id": "1:4209469156405110744",
+          "name": "id",
+          "type": 6,
+          "flags": 129
+        },
+        {
+          "id": "2:3506843209001378577",
+          "name": "name",
+          "type": 9
+        },
+        {
+          "id": "3:8400729680487607208",
+          "name": "price",
+          "type": 8
+        },
+        {
+          "id": "5:8385131410702019936",
+          "name": "type",
+          "type": 9
+        },
+        {
+          "id": "6:8408451132156710396",
+          "name": "sku",
+          "type": 9
+        },
+        {
+          "id": "7:6071382410443273019",
+          "name": "quantity",
+          "type": 6
+        },
+        {
+          "id": "8:3998894753954730668",
+          "name": "catId",
+          "type": 6
+        },
+        {
+          "id": "9:7000032065444812316",
+          "name": "commission",
+          "type": 6
         }
       ],
       "relations": []
     }
   ],
-  "lastEntityId": "3:6362456158158863905",
+  "lastEntityId": "4:2293708630956089105",
   "lastIndexId": "0:0",
   "lastRelationId": "0:0",
   "lastSequenceId": "0:0",
   "modelVersion": 5,
   "modelVersionParserMinimum": 5,
-  "retiredEntityUids": [],
+  "retiredEntityUids": [
+    9179977977354614928
+  ],
   "retiredIndexUids": [],
-  "retiredPropertyUids": [],
+  "retiredPropertyUids": [
+    8353744906421831475,
+    8357144011607279320,
+    8458344830971261292,
+    7962767843937331718,
+    3822356327941314575,
+    860510758666373946,
+    8822244724883855249,
+    3650868813667324470,
+    7349193323454389628,
+    5679439287675161758,
+    9086673886832298173
+  ],
   "retiredRelationUids": [],
   "version": 1
 }

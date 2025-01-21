@@ -6,7 +6,7 @@ class DependencyInjection {
   static GetIt getIt = GetIt.instance;
 
   static void configure() {
-    getIt.registerSingleton<Productservice>(Productservice());
+    getIt.registerSingleton<ProductService>(ProductService());
     getIt.registerSingleton<Dbconfig>(Dbconfig());
 
   }

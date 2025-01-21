@@ -1,5 +1,7 @@
 // Events
-import 'package:das_app/data/model/Product.dart';
+
+import 'package:das_app/data/model/all_products_response.dart';
+import 'package:das_app/data/model/product_response.dart';
 
 abstract class ProductEvent {}
 
@@ -10,11 +12,16 @@ class LoadProducts extends ProductEvent {
 }
 
 class AddProduct extends ProductEvent {
-  final Product product;
+  final Products product;
 
   AddProduct(this.product);
 }
 
+class RequestStock extends ProductEvent {
+  final List<DataList> products;
+  RequestStock(this.products);
+}
+class GetAllStock extends ProductEvent {}
 // States
 abstract class ProductState {}
 
@@ -23,13 +30,19 @@ class ProductsLoading extends ProductState {
 
   ProductsLoading(this.isLoading);
 }
-
+class RequestSuccess extends ProductState {}
 class ProductsLoaded extends ProductState {
-  final List<Product> products;
+  final List<Products> products;
+
 
   ProductsLoaded(this.products);
 }
+class AllProductsLoaded extends ProductState {
+  final List<DataList> products;
 
+
+  AllProductsLoaded(this.products);
+}
 class ProductError extends ProductState {
   final String error;
 

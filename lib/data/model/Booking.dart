@@ -1,25 +1,27 @@
 import 'package:objectbox/objectbox.dart';
 
-@Entity()
 class Booking {
-  @Id()
-  int id = 0;
 
-  String customerName;
+  int id = 0;
+  String name;
   String email;
   String mobileNumber;
   String address;
   String pincode;
   String type; // Add type field
   double amount; // Add type field
-
+  int pId;
+  int userId;
   Booking({
-    required this.customerName,
+    required this.id,
+    required this.name,
     required this.email,
     required this.mobileNumber,
     required this.address,
     required this.pincode,
-    required this.type, // Add type to constructor
+    required this.type,
     required this.amount,
+    required this.pId,
+    required this.userId,
   });
 }
